@@ -1,0 +1,59 @@
+{
+  "source_dataset": "data\\processed\\urban_heat_coimbatore_processed.csv",
+  "cell_count": 31676,
+  "intervention_categories": [
+    "Tree / Vegetation Cover",
+    "Cool / Reflective Roofs",
+    "Shaded Public / Pedestrian Areas",
+    "Green Corridors / Connected Vegetation"
+  ],
+  "threshold_percentiles": {
+    "low_vegetation_ndvi": 0.33,
+    "high_built_up_ndbi": 0.67,
+    "high_heat_lst": 0.67,
+    "high_heat_baseline_score": 0.67
+  },
+  "threshold_values": {
+    "low_vegetation_ndvi": 0.414803683757782,
+    "high_built_up_ndbi": -0.008676229510456275,
+    "high_heat_lst": 42.71090035999999,
+    "high_heat_baseline_score": 67.56290611842402
+  },
+  "observed_feature_ranges": {
+    "lst_median_c": {
+      "minimum": 22.34975522000002,
+      "maximum": 50.23908941000002
+    },
+    "ndvi_median": {
+      "minimum": -0.0166645627468824,
+      "maximum": 0.8846583962440491
+    },
+    "ndbi_median": {
+      "minimum": -0.4680333435535431,
+      "maximum": 0.1968157440423965
+    },
+    "baseline_heat_risk_score": {
+      "minimum": 3.2473724392751997,
+      "maximum": 89.85107274352879
+    }
+  },
+  "scoring_logic": {
+    "tree_vegetation_cover": "100 * (0.60 * heat_signal + 0.40 * vegetation_gap)",
+    "cool_reflective_roofs": "100 * (0.60 * heat_signal + 0.40 * built_up_pressure)",
+    "shaded_public_pedestrian_areas": "100 * heat_signal",
+    "green_corridors_connected_vegetation": "100 * (0.50 * heat_signal + 0.50 * vegetation_gap)",
+    "heat_signal": "min-max score from high-heat baseline percentile to observed maximum baseline score",
+    "vegetation_gap": "min-max score from observed minimum NDVI to low-vegetation percentile, reversed",
+    "built_up_pressure": "min-max score from high-built-up percentile to observed maximum NDBI",
+    "priority_levels": {
+      "high": 66.0,
+      "medium": 33.0
+    }
+  },
+  "limitations": [
+    "Decision-support suggestions only; no intervention outcome or temperature reduction is guaranteed.",
+    "Rules use seasonal satellite-derived features and do not include cost, feasibility, land ownership, or community input.",
+    "Thresholds are dataset-relative percentiles, not universal physical thresholds."
+  ],
+  "created_at_utc": "2026-09-12T19:04:33.288108+00:00"
+}

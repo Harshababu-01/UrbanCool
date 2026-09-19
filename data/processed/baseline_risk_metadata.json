@@ -1,0 +1,47 @@
+{
+  "source_dataset": "data\\raw\\urban_heat_coimbatore_2022_2025.csv",
+  "grid_cell_count": 31676,
+  "normalization_method": "min-max normalization using each feature's observed range",
+  "normalization_ranges": {
+    "lst_median_c": {
+      "minimum": 22.34975522000002,
+      "maximum": 50.23908941000002
+    },
+    "ndbi_median": {
+      "minimum": -0.4680333435535431,
+      "maximum": 0.1968157440423965
+    },
+    "ndvi_median": {
+      "minimum": -0.0166645627468824,
+      "maximum": 0.8846583962440491
+    }
+  },
+  "formula": "100 * (0.50 * lst_score + 0.30 * ndbi_score + 0.20 * vegetation_score)",
+  "contributions": {
+    "lst_score": 0.5,
+    "ndbi_score": 0.3,
+    "vegetation_score": 0.2
+  },
+  "feature_definitions": {
+    "lst_score": "higher observed median LST means higher hazard",
+    "ndbi_score": "higher observed NDBI means more built-up surface",
+    "vegetation_score": "1 - normalized NDVI, so lower vegetation means higher score"
+  },
+  "class_thresholds": {
+    "low_upper_inclusive": 50.18720656040773,
+    "medium_upper_inclusive": 67.42561346876894,
+    "percentiles": {
+      "low": "0-33.333rd",
+      "medium": "33.333rd-66.667th",
+      "high": "66.667th-100th"
+    }
+  },
+  "class_counts": {
+    "Low": 10559,
+    "High": 10559,
+    "Medium": 10558
+  },
+  "interpretation": "Baseline heat-risk index, not a validated medical or environmental risk model.",
+  "ml_status": "No supervised ML model was trained; this index is not an ML target or prediction.",
+  "created_at_utc": "2026-09-12T18:37:57.010762+00:00"
+}

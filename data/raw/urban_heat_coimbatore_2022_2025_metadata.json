@@ -1,0 +1,49 @@
+{
+  "city": "Coimbatore",
+  "study_area": {
+    "source": "FAO/GAUL/2015/level2",
+    "filters": {
+      "ADM0_NAME": "India",
+      "ADM1_NAME": "Tamil Nadu",
+      "ADM2_NAME": "Coimbatore"
+    },
+    "note": "Coimbatore district fallback; replace get_study_area with an official municipal GeoJSON when available.",
+    "geometry_type": "Polygon"
+  },
+  "grid_size_meters": 500,
+  "landsat_datasets": [
+    "LANDSAT/LC08/C02/T1_L2",
+    "LANDSAT/LC09/C02/T1_L2"
+  ],
+  "date_range": {
+    "start_month_day": "03-01",
+    "end_month_day_exclusive": "06-01"
+  },
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "preprocessing": {
+    "qa_pixel_mask_bits": {
+      "dilated_cloud": 1,
+      "cirrus": 2,
+      "cloud": 3,
+      "cloud_shadow": 4,
+      "snow": 5
+    },
+    "optical_scaling": "SR_B* * 0.0000275 - 0.2",
+    "temperature_scaling": "ST_B10 * 0.00341802 + 149.0 K, then K - 273.15",
+    "invalid_temperature_observations": "masked using the ST_B10 image mask"
+  },
+  "feature_definitions": {
+    "lst_median_c": "median seasonal LST in degrees Celsius",
+    "lst_p90_c": "90th percentile seasonal LST in degrees Celsius",
+    "ndvi_median": "median (SR_B5 - SR_B4) / (SR_B5 + SR_B4)",
+    "ndbi_median": "median (SR_B6 - SR_B5) / (SR_B6 + SR_B5)",
+    "valid_pixel_count": "count of valid Landsat LST observations used per cell"
+  },
+  "row_count": 31676,
+  "exported_at_utc": "2026-09-12T18:37:42.222805+00:00"
+}

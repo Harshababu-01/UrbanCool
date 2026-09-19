@@ -1,0 +1,1 @@
+"""UrbanCool application package."""

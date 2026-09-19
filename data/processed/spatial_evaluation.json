@@ -1,0 +1,73 @@
+{
+  "dataset": "data\\processed\\urban_heat_coimbatore_processed.csv",
+  "target": "lst_median_c",
+  "features": [
+    "ndvi_median",
+    "ndbi_median",
+    "latitude",
+    "longitude"
+  ],
+  "excluded_features": [
+    "lst_median_c",
+    "lst_p90_c",
+    "baseline_heat_risk_score",
+    "heat_risk_class",
+    "valid_pixel_count"
+  ],
+  "model": {
+    "type": "RandomForestRegressor",
+    "n_estimators": 200,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "spatial_blocking": {
+    "method": "floor latitude and longitude into fixed geographic bands, then combine band indices",
+    "block_size_degrees": 0.1,
+    "latitude_origin": 10.20659247851595,
+    "longitude_origin": 76.64650582927278,
+    "test_selection_rule": "(latitude_band * 31 + longitude_band * 17) % 5 == 0",
+    "total_blocks": 86,
+    "training_blocks": 70,
+    "test_blocks": 16
+  },
+  "split": {
+    "training_rows": 25584,
+    "test_rows": 6092,
+    "training_mean_lst_c": 39.325665409579635
+  },
+  "random_split": {
+    "mae": 0.7402767092737049,
+    "rmse": 1.0050607891231715,
+    "r2": 0.9642511850914076
+  },
+  "spatial_split": {
+    "mae": 0.9516455393815569,
+    "rmse": 1.3126890279961134,
+    "r2": 0.9337080606168029
+  },
+  "baseline": {
+    "mae": 4.352128477911986,
+    "rmse": 5.107950847628806,
+    "r2": -0.003761266873974156
+  },
+  "performance_difference_random_minus_spatial": {
+    "mae": -0.211368830107852,
+    "rmse": -0.3076282388729419,
+    "r2": 0.03054312447460472
+  },
+  "feature_importance": {
+    "ndvi_median": 0.8329448787931772,
+    "ndbi_median": 0.057169850795540225,
+    "latitude": 0.07132871127781192,
+    "longitude": 0.038556559133470655
+  },
+  "validation": {
+    "no_test_block_in_training": true,
+    "no_row_overlap": true,
+    "target_excluded_from_inputs": true,
+    "leakage_columns_excluded_from_inputs": true,
+    "test_rows_are_held_out": true
+  },
+  "created_at_utc": "2026-09-12T18:51:16.788051+00:00",
+  "scientific_status": "Student prototype; spatial holdout is stronger than random splitting but is not scientific validation."
+}

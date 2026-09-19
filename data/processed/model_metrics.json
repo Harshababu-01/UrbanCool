@@ -1,0 +1,64 @@
+{
+  "dataset": "data\\processed\\urban_heat_coimbatore_processed.csv",
+  "target": "lst_median_c",
+  "split": {
+    "train_fraction": 0.8,
+    "test_fraction": 0.2,
+    "train_rows": 25340,
+    "test_rows": 6336,
+    "random_state": 42
+  },
+  "primary_features": [
+    "ndvi_median",
+    "ndbi_median",
+    "latitude",
+    "longitude"
+  ],
+  "optional_feature_included": false,
+  "excluded_features": [
+    "lst_median_c",
+    "lst_p90_c",
+    "baseline_heat_risk_score",
+    "heat_risk_class",
+    "valid_pixel_count"
+  ],
+  "model": {
+    "type": "RandomForestRegressor",
+    "n_estimators": 200,
+    "random_state": 42,
+    "n_jobs": -1
+  },
+  "mean_training_target_baseline": {
+    "training_mean_lst_c": 39.386243916888034,
+    "metrics": {
+      "mae": 4.297895589562747,
+      "rmse": 5.315713222129592,
+      "r2": -1.7389556306035558e-07
+    }
+  },
+  "random_forest": {
+    "metrics": {
+      "mae": 0.7402767092737049,
+      "rmse": 1.0050607891231715,
+      "r2": 0.9642511850914076
+    }
+  },
+  "residual_statistics": {
+    "count": 6336,
+    "mean": 0.0023288968915185174,
+    "median": 0.03435964605000308,
+    "standard_deviation": 1.005137413580293,
+    "minimum": -8.081258866200017,
+    "maximum": 5.07349526174999,
+    "25th_percentile": -0.5509826877374966,
+    "75th_percentile": 0.594190733062538
+  },
+  "feature_importance": {
+    "ndvi_median": 0.8359765378652643,
+    "ndbi_median": 0.05720006290025731,
+    "latitude": 0.06999839965421818,
+    "longitude": 0.03682499958026026
+  },
+  "created_at_utc": "2026-09-12T18:45:11.009370+00:00",
+  "scientific_status": "Student prototype on a bounded Coimbatore satellite dataset; not scientifically validated."
+}

@@ -1,0 +1,31 @@
+{
+  "same_test_split": true,
+  "random_state": 42,
+  "experiments": {
+    "coordinates_plus_environment": {
+      "features": [
+        "ndvi_median",
+        "ndbi_median",
+        "latitude",
+        "longitude"
+      ],
+      "metrics": {
+        "mae": 0.7402767092737049,
+        "rmse": 1.0050607891231715,
+        "r2": 0.9642511850914076
+      }
+    },
+    "environment_only": {
+      "features": [
+        "ndvi_median",
+        "ndbi_median"
+      ],
+      "metrics": {
+        "mae": 1.2834738122685014,
+        "rmse": 1.8145111012188375,
+        "r2": 0.883481134226994
+      }
+    }
+  },
+  "interpretation": "The coordinates-plus-environment experiment is compared with an environment-only experiment to examine the effect of spatial location."
+}
